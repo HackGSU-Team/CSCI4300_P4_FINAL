@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Trucks</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" >
+  </head>
+  <body>
+    <div>
+    <a href="index.html">Go Back</a>
+    </div>
+    <div class="vehicle">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js" type="text/javascript"></script>
+    <script>
+      getTrucks();
+      function getTrucks(){
+      $.getJSON("172.17.152.34/p4/","Truck",function(data){
+      $.each(data,function(i,item){
+      $(".vehicle").append([
+      $("<div>")
+	.append("<div><img src="+item.picture+" alt=truck picture style=width:400px; height:400px;></div>")
+	.append("<div>"+item.year + " "+item.productName+"</div>")
+	.append("<div>"+item.color +" "+item.MSRP+"</div>")
+	]);
+     	})
+	});
+	}//function
+    </script>
+  </body>
+</html>

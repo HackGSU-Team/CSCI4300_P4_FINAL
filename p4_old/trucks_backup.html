@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Planes</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div>
+    <a href="index.html">Go Home</a>
+    </div>
+    <table class="trucks">
+      <thead>
+	<tr>
+	  <th>productCode</th>
+	  <th>productName</th>
+	  <th>productLine</th>
+	  <th>year</th>
+	  <th>make</th>
+	  <th>model</th>
+	  <th>color</th>
+	  <th>quantity</th>
+	  <th>Price</th>	  
+	</tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <script>
+      getTrucks();
+      function getTrucks(){
+      $.getJSON("172.17.152.34/p4/","Truck",function(data){
+      $.each(data,function(i,item){
+      $(".trucks").append([
+      $("<tr>")
+	.append("<td>" + item.productCode + "</td>")
+	.append("<td>" + item.productName + "</td>")
+	.append("<td>" + item.productLine+"</td>")
+	.append("<td>" + item.year + "</td>")
+	.append("<td>" + item.make + "</td>")
+	.append("<td>" + item.model + "</td>")
+	.append("<td>" + item.color + "</td>")
+	.append("<td>" + item.quantityInStock + "</td>")
+	.append("<td>" + item.MSRP + "</td>")
+	]);
+	})
+	});
+	}//function
+    </script>
+  </body>
+</html>

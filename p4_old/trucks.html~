@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Trucks</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" >
+  </head>
+  <body>
+    <div>
+    <a href="index.html">Go Back</a>
+    </div>
+    <div class="vehicle">
+      <img src="https://www.toyota.com/config/pub/static/images/TOY/2020/tacoma/exteriorcolor/carjellyimage/856de11821c94983d4c1b6cf255175321fc3795deb4461a08fb1f994a3df7140_MY20_Tacoma_US_7186_01G3_002.png" alt="gray toyota truck">
+      <div class="year">
+	2020 Toyota Tacoma
+      </div>
+      <div class="price">
+	Gray $26,050
+      </div>
+    </div>
+    <table class="trucks">
+      <thead>
+	<tr>
+	  <th>productCode</th>
+	  <th>productName</th>
+	  <th>productLine</th>
+	  <th>year</th>
+	  <th>make</th>
+	  <th>model</th>
+	  <th>color</th>
+	  <th>quantity</th>
+	  <th>Price</th>	  
+	</tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js" type="text/javascript"></script>
+    <script>
+      var img="https://www.toyota.com/imgix/content/common/img/jellies/global-nav/2020/tacoma/base.png?w=182&fm=jpg&dpr=2&fit=max&q=80&cs=strip&bg=fff&auto=compress";
+      getTrucks();
+      function getTrucks(){
+      $.getJSON("172.17.152.34/p4/","Truck",function(data){
+      $.each(data,function(i,item){
+      $(".vehicle").append([
+      $("<div>")
+	.append("<div><img src="+img+"></div>")
+	.append("<div>"+item.year + " "+item.productName+"</div>")
+	.append("<div>"+item.color +" "+item.MSRP+"</div>")
+      ]);
+      $(".trucks").append([
+      $("<tr>")
+	.append("<td>" + item.productCode + "</td>")
+	.append("<td>" + item.productName + "</td>")
+	.append("<td>" + item.productLine+"</td>")
+	.append("<td>" + item.year + "</td>")
+	.append("<td>" + item.make + "</td>")
+	.append("<td>" + item.model + "</td>")
+	.append("<td>" + item.color + "</td>")
+	.append("<td>" + item.quantityInStock + "</td>")
+	.append("<td>" + item.MSRP + "</td>")
+	]);
+	})
+	});
+	}//function
+    </script>
+  </body>
+</html>

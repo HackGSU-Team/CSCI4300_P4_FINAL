@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Page Title</title>
+  </head>
+  <body>
+    
+    <div>
+      <a href="index.html">Go Back</a>
+    </div>
+    <div class="vehicle">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      getTrucks();
+      function getTrucks(){
+      $.getJSON("172.17.152.34/p4/","Car",function(data){
+      $.each(data,function(i,item){
+      $(".vehicle").append([
+      $("<div>")
+	.append("<div><img src="+item.picture+" alt=car picture style=width:400px; height:400px;></div>")
+	.append("<div>"+item.year + " "+item.productName+"</div>")
+	.append("<div>"+item.color +" "+item.MSRP+"</div>")
+	]);
+	})
+	});
+	}//function
+    </script>
+  </body>
+</html>
