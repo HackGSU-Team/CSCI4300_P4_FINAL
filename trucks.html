@@ -60,67 +60,9 @@
       <h2>Trucks</h2>
       <p>Here are the trucks we sell:</p>
     </div>
-    <div class="container">
-      <div class="col-md-4">
-        <figure class="effect-marley">
-          <img src="img/8.jpg" alt="" class="img-responsive" />
-          <figcaption>
-            <h4>sweet marley</h4>
-            <p>Marley tried to convince her but she was not interested.</p>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="col-md-4">
-        <figure class="effect-marley">
-          <img src="img/9.jpg" alt="" class="img-responsive" />
-          <figcaption>
-            <h4>sweet marley</h4>
-            <p>Marley tried to convince her but she was not interested.</p>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="col-md-4">
-        <figure class="effect-marley">
-          <img src="img/10.jpg" alt="" class="img-responsive" />
-          <figcaption>
-            <h4>sweet marley</h4>
-            <p>Marley tried to convince her but she was not interested.</p>
-          </figcaption>
-        </figure>
-      </div>
+    <!-- VEHICLE DISPLAY CENTER-->
+    <div class="container trucks">
     </div>
-
-    <div class="container">
-      <div class="col-md-4">
-        <figure class="effect-marley">
-          <img src="img/11.jpg" alt="" class="img-responsive" />
-          <figcaption>
-            <h4>sweet marley</h4>
-            <p>Marley tried to convince her but she was not interested.</p>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="col-md-4">
-        <figure class="effect-marley">
-          <img src="img/12.jpg" alt="" class="img-responsive" />
-          <figcaption>
-            <h4>sweet marley</h4>
-            <p>Marley tried to convince her but she was not interested.</p>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="col-md-4">
-        <figure class="effect-marley">
-          <img src="img/13.jpg" alt="" class="img-responsive" />
-          <figcaption>
-            <h4>sweet marley</h4>
-            <p>Marley tried to convince her but she was not interested.</p>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-  
    <footer>
     <div class="container">
       <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
@@ -150,8 +92,22 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
   <script src="js/wow.min.js"></script>
+  <!-- Getting trucks script -->
   <script>
     wow = new WOW({}).init();
+    console.log("HELLO");
+    getMotorcycles();
+    function getMotorcycles(){
+    console.log("HELLO trucks");
+    $.getJSON("172.17.152.34/p4/","Truck",function(data){
+    console.log("GOODBYE TRUCKS");
+    $.each(data,function(i,item){
+    $(".trucks").append("<div class=col-md-4>")
+      .append("<figure class=effect-marley><img src= "+ item.picture + " class=img-responsive>")
+	.append("<figcaption><h4>"+item.productName+"</h4><p>"+item.MSRP +"</p></figcaption></figure></div>")
+      })
+      });
+      }//function
   </script>
 
 </body>
